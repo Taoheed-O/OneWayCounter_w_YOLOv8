@@ -1,1 +1,1 @@
-# running YOLO
+# getting started with YOLO
