@@ -26,12 +26,13 @@ while True:
         boxes = r.boxes
 
         for box in boxes:
-            x1, x2, x3, x4 = boxes.xyxy[0]
-            x1, x2, x3, x4 = int(x1), int(x2), int(x3), int(x4)
-            print(x1, x2, x3, x4)
+            x1, y1, x2, y2 = box.xyxy[0]
+            x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
+            # print(x1, x2, x3, x4)
+            cv2.rectangle(img, (x1, y1), (x2, y2), (255, 0, 255), 3)
 
     cv2.imshow('image', img)
-    
+
     key = cv2.waitKey(1)
     if key & 0xFF == ord('q'):
         break
