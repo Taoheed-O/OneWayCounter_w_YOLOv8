@@ -35,7 +35,7 @@ while True:
             cvzone.cornerRect(img, (x1, y1,w, h))
 
             conf = ceil(box.conf[0]*100)/100
-            cvzone.putTextRect(img, f"{conf}", (max(0, x1), max(0, y1 - 20)))
+            cvzone.putTextRect(img, f"{conf}", (max(0, x1), max(35, y1)))
             print(conf)
 
     cv2.imshow('image', img)
