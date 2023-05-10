@@ -2,6 +2,7 @@
 from ultralytics import YOLO
 import cv2
 import cvzone
+from math import ceil
 
 # # initializing model
 # model = YOLO('Yolo-Weights/yolov8l.pt')
@@ -33,9 +34,14 @@ while True:
             w, h = x2 - x1, y2 - y1
             cvzone.cornerRect(img, (x1, y1,w, h))
 
+            conf = ceil(box.conf[0]*100)/100
+            cvzone.putTextRect(img, f"{conf}", (max(0, x1), max(0, y1 - 20)))
+            print(conf)
+
     cv2.imshow('image', img)
 
     key = cv2.waitKey(1)
     if key & 0xFF == ord('q'):
         break
+
 
