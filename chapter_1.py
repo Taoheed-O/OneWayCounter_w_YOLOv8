@@ -38,3 +38,4 @@ while True:
     key = cv2.waitKey(1)
     if key & 0xFF == ord('q'):
         break
+
