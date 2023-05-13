@@ -30,7 +30,7 @@ classnames = ['person', 'bicycle', 'car', 'motorbike', 'aeroplane', 'bus', 'trai
               'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors',
               'teddy bear', 'hair drier', 'toothbrush']
 
-              
+
 
 
 while True:
@@ -47,10 +47,13 @@ while True:
             # cv2.rectangle(img, (x1, y1), (x2, y2), (255, 0, 255), 3)
             w, h = x2 - x1, y2 - y1
             cvzone.cornerRect(img, (x1, y1,w, h))
-
+            # confidence level 
             conf = ceil(box.conf[0]*100)/100
-            cvzone.putTextRect(img, f"{conf}", (max(0, x1), max(35, y1)))
-            print(conf)
+
+            # class Name
+            cls =  int(box.cls[0])
+            cvzone.putTextRect(img, f"{classnames[cls]} {conf}", (max(0, x1), max(35, y1)))
+
 
     cv2.imshow('image', img)
 
