@@ -14,9 +14,9 @@ cap = cv2.VideoCapture(0)
 
 cap.set(3, 1280)
 cap.set(4, 720)
+cap.set(10, 150)
 
-
-model = YOLO('Yolo-Weights/yolov8l.pt')
+model = YOLO('Yolo-Weights/yolov8n.pt')
 
 
 classnames = ['person', 'bicycle', 'car', 'motorbike', 'aeroplane', 'bus', 'train', 'truck', 'boat',
@@ -29,7 +29,6 @@ classnames = ['person', 'bicycle', 'car', 'motorbike', 'aeroplane', 'bus', 'trai
               'dinningtable', 'toilet', 'tvmonitor', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone',
               'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors',
               'teddy bear', 'hair drier', 'toothbrush']
-
 
 
 
@@ -57,8 +56,7 @@ while True:
 
     cv2.imshow('image', img)
 
-    key = cv2.waitKey(1)
-    if key & 0xFF == ord('q'):
+    if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
 
