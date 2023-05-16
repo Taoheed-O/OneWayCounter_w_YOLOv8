@@ -51,7 +51,11 @@ while True:
 
             # class Name
             cls =  int(box.cls[0])
-            cvzone.putTextRect(img, f"{classnames[cls]} {conf}", (max(0, x1), max(35, y1)), thickness=0.6, scale=1 , offset=5)
+            current_class = classnames[cls]
+            
+            # if statement to filter some classes
+            if current_class == 'person':
+                cvzone.putTextRect(img, f"{classnames[cls]} {conf}", (max(0, x1), max(35, y1)), thickness=1, scale=0.6 , offset=5)
 
 
     cv2.imshow('image', img)
