@@ -3,6 +3,7 @@ from ultralytics import YOLO
 import cv2
 import cvzone
 from math import ceil
+from sort import *
 
 # # initializing model
 # model = YOLO('Yolo-Weights/yolov8l.pt')
@@ -30,10 +31,18 @@ classnames = ['person', 'bicycle', 'car', 'motorbike', 'aeroplane', 'bus', 'trai
               'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors',
               'teddy bear', 'hair drier', 'toothbrush']
 
+# mask = cv2.imread("###")
+
+# Tracker
+tracker =  Sort(max_age=20, min_hits=3, iou_threshold=0.3)
+
 
 while True:
     source, img = cap.read()
+    # imgRegion = cv2.bitwise_and(img, mask)
     results = model(img, stream=True)
+
+    detections = np.empty((0, 5))
 
     for r in results:
         boxes = r.boxes
@@ -44,7 +53,7 @@ while True:
             # print(x1, x2, x3, x4)
             # cv2.rectangle(img, (x1, y1), (x2, y2), (255, 0, 255), 3)
             w, h = x2 - x1, y2 - y1
-            cvzone.cornerRect(img, (x1, y1,w, h), l=8)
+
             # confidence level 
             conf = ceil(box.conf[0]*100)/100
 
@@ -53,9 +62,18 @@ while True:
             current_class = classnames[cls]
             
             # if statement to filter some classes
-            if current_class == 'person':
+            if current_class == 'person' and conf > 0.5:
                 cvzone.putTextRect(img, f"{classnames[cls]} {conf}", (max(0, x1), max(35, y1)), thickness=1, scale=0.6 , offset=5)
+                cvzone.cornerRect(img, (x1, y1,w, h), l=8)
+                currentArray = np.array([x1, y1, x2, y2, conf])
+                detections = np.vstack((detections, currentArray))
 
+    resultsTracker = tracker.update(detections)
+    
+    # looping through the results
+    for result in resultsTracker:
+        x1, y1, x2, y2, Id = result
+        print(result)
 
     cv2.imshow('image', img)
 
