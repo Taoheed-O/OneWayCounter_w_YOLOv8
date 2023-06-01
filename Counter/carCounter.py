@@ -64,7 +64,7 @@ while True:
             # if statement to filter some classes
             if current_class == 'car' and conf > 0.5:
                 cvzone.putTextRect(img, f"{classnames[cls]} {conf}", (max(0, x1), max(35, y1)), thickness=1, scale=0.6 , offset=5)
-                cvzone.cornerRect(img, (x1, y1,w, h), l=8)
+                cvzone.cornerRect(img, (x1, y1,w, h), l=8, rt=5)
                 currentArray = np.array([x1,y1, x2, y2, conf])
                 detections = np.vstack((detections, currentArray))
 
@@ -74,6 +74,10 @@ while True:
     for result in resultsTracker:
         x1, y1, x2, y2, Id = result
         print(result)
+        w, h = x2 - x1, y2 - y1
+        cvzone.cornerRect(img, (x1, y1,w, h), l=8, rt=2, colorR=(255, 0, 0))
+        cvzone.putTextRect(img, f" {Id}", (max(0, x1), max(35, y1)), thickness=1, scale=0.6 , offset=5)
+
 
     cv2.imshow('image', img)
 
