@@ -30,7 +30,7 @@ classnames = ['person', 'bicycle', 'car', 'motorbike', 'aeroplane', 'bus', 'trai
               'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors',
               'teddy bear', 'hair drier', 'toothbrush']
 
-
+mask = cv2.imread()
 
 while True:
     source, img = cap.read()
@@ -54,7 +54,7 @@ while True:
             current_class = classnames[cls]
             
             # if statement to filter some classes
-            if current_class == 'person':
+            if current_class == 'car':
                 cvzone.putTextRect(img, f"{classnames[cls]} {conf}", (max(0, x1), max(35, y1)), thickness=1, scale=0.6 , offset=5)
 
 
@@ -62,5 +62,3 @@ while True:
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-
-
