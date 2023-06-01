@@ -30,7 +30,7 @@ classnames = ['person', 'bicycle', 'car', 'motorbike', 'aeroplane', 'bus', 'trai
               'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors',
               'teddy bear', 'hair drier', 'toothbrush']
 
-mask = cv2.imread()
+mask = cv2.imread("###")
 
 while True:
     source, img = cap.read()
