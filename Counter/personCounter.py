@@ -36,6 +36,8 @@ classnames = ['person', 'bicycle', 'car', 'motorbike', 'aeroplane', 'bus', 'trai
 # Tracker
 tracker =  Sort(max_age=20, min_hits=3, iou_threshold=0.3)
 limits = [400, 297, 673, 297]
+# initializing counter
+totalCounts = 0
 
 while True:
     source, img = cap.read()
@@ -82,6 +84,10 @@ while True:
 
         cx, cy = x1+w//2, y1+h//2
         cv2.circle(img, (cx,cy), 5, (255, 0, 255), cv2.FILLED)
+
+        if limits[0]< cx < limits[2] and limits[1] - 20 < cy < limits[1] + 20:
+            totalCounts+=1
+    cvzone.putTextRect(img, f"counts: {totalCounts}", (50, 50))
 
     cv2.imshow('image', img)
 
