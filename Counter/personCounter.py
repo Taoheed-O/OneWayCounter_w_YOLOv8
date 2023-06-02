@@ -80,6 +80,9 @@ while True:
         cvzone.cornerRect(img, (x1, y1,w, h), l=8, rt=5, colorR=(255, 0, 0))
         cvzone.putTextRect(img, f"{int(id)} - {classnames[cls]} {conf}", (max(0, x1), max(35, y1)), thickness=2, scale=0.9 , offset=5)
 
+        cx, cy = x1+w//2, y1+h//2
+        cv2.circle(img, (cx,cy), 5, (255, 0, 255), cv2.FILLED)
+
     cv2.imshow('image', img)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
