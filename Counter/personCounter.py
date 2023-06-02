@@ -35,7 +35,7 @@ classnames = ['person', 'bicycle', 'car', 'motorbike', 'aeroplane', 'bus', 'trai
 
 # Tracker
 tracker =  Sort(max_age=20, min_hits=3, iou_threshold=0.3)
-
+limits = [400, 297, 673, 297]
 
 while True:
     source, img = cap.read()
@@ -69,7 +69,8 @@ while True:
                 detections = np.vstack((detections, currentArray))
 
     resultsTracker = tracker.update(detections)
-    
+    line = cv2.line(img, (limits[0], limits[1]),(limits[2], limits[3]), (255, 0, 255), 5)
+
     # looping through the results
     for result in resultsTracker:
         x1, y1, x2, y2, id = result
