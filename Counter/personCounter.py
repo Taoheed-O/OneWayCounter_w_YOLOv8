@@ -71,7 +71,7 @@ while True:
                 detections = np.vstack((detections, currentArray))
 
     resultsTracker = tracker.update(detections)
-    line = cv2.line(img, (limits[0], limits[1]),(limits[2], limits[3]), (255, 0, 255), 5)
+    cv2.line(img, (limits[0], limits[1]),(limits[2], limits[3]), (0, 0, 255), 5)
 
     # looping through the results
     for result in resultsTracker:
@@ -85,10 +85,11 @@ while True:
         cx, cy = x1+w//2, y1+h//2
         cv2.circle(img, (cx,cy), 5, (255, 0, 255), cv2.FILLED)
 
-        if limits[0]< cx < limits[2] and limits[1] - 20 < cy < limits[1] + 20:
+        if limits[0]< cx < limits[2] and limits[1] - 10 < cy < limits[1] + 10:
             # checking if the id exists before before appending/counting
             if totalCounts.count(id) == 0:
                 totalCounts.append(id)
+                cv2.line(img, (limits[0], limits[1]),(limits[2], limits[3]), (0, 255, 0), 5)
 
     cvzone.putTextRect(img, f"counts: {len(totalCounts)}", (50, 50))
 
