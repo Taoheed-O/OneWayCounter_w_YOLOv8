@@ -35,7 +35,7 @@ classnames = ['person', 'bicycle', 'car', 'motorbike', 'aeroplane', 'bus', 'trai
 
 # Tracker
 tracker =  Sort(max_age=20, min_hits=3, iou_threshold=0.3)
-limits = [400, 297, 673, 297]
+limits = [0, 700, 2000, 700]
 # initializing counter
 totalCounts = []
 
@@ -82,7 +82,7 @@ while True:
         cvzone.cornerRect(img, (x1, y1,w, h), l=8, rt=5, colorR=(255, 0, 0))
         #cvzone.putTextRect(img, f"{int(id)} - {classnames[cls]} {conf}", (max(0, x1), max(35, y1)), thickness=2, scale=0.9 , offset=5)
 
-        cx, cy = x1+w//2, y1+h//2
+        cx, cy = x1+w//2, y1+h
         cv2.circle(img, (cx,cy), 5, (255, 0, 255), cv2.FILLED)
 
         if limits[0]< cx < limits[2] and limits[1] - 10 < cy < limits[1] + 10:
