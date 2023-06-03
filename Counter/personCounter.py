@@ -10,12 +10,12 @@ from sort import *
 # results = model('images/students.jpg', show=True)
 # cv2.waitKey(0)
 
+# initializing the height and width
+frameWidth = 640
+frameHeight = 480
 
-cap = cv2.VideoCapture(0)
 
-cap.set(3, 1280)
-cap.set(4, 720)
-cap.set(10, 150)
+cap = cv2.VideoCapture("videos/people_walking.mp4")
 
 model = YOLO('Yolo-Weights/yolov8n.pt')
 
@@ -31,7 +31,7 @@ classnames = ['person', 'bicycle', 'car', 'motorbike', 'aeroplane', 'bus', 'trai
               'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors',
               'teddy bear', 'hair drier', 'toothbrush']
 
-# mask = cv2.imread("###")
+# mask = cv2.imread()
 
 # Tracker
 tracker =  Sort(max_age=20, min_hits=3, iou_threshold=0.3)
@@ -93,6 +93,7 @@ while True:
 
     cvzone.putTextRect(img, f"counts: {len(totalCounts)}", (50, 50))
 
+    img = cv2.resize(img, (frameWidth, frameHeight))
     cv2.imshow('image', img)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
