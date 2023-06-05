@@ -41,8 +41,8 @@ totalCounts = []
 
 while True:
     source, img = cap.read()
-    imgGraphics = cv2.imread('images/person-walking.png', cv2.IMREAD_UNCHANGED)
-    img = cvzone.overlayPNG(img, imgGraphics, (0, 0))
+    # imgGraphics = cv2.imread('images/person-walking.png', cv2.IMREAD_UNCHANGED)
+    # img = cvzone.overlayPNG(img, imgGraphics, (0, 0))
     # imgRegion = cv2.bitwise_and(img, mask)
     results = model(img, stream=True)
 
@@ -93,7 +93,7 @@ while True:
                 totalCounts.append(id)
                 cv2.line(img, (limits[0], limits[1]),(limits[2], limits[3]), (0, 255, 0), 5)
 
-    cv2.putText(img, f"counts: {len(totalCounts)}", (255, 150), cv2.FONT_HERSHEY_DUPLEX, 5, (255, 0, 255), 8)
+    cv2.putText(img, f"counts: {len(totalCounts)}", (255, 150), cv2.FONT_HERSHEY_DUPLEX, 3, (255, 0, 255), 3)
 
     img = cv2.resize(img, (frameWidth, frameHeight))
     cv2.imshow('image', img)
