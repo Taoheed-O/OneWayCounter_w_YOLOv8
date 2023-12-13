@@ -26,7 +26,7 @@ mask = cv2.imread("images/mask.png")
 # Tracking
 tracker = Sort(max_age=20, min_hits=3, iou_threshold=0.3)
 
-limits = [400, 297, 673, 297]
+boundary = [400, 297, 673, 297]
 totalCount = []
 
 while True:
@@ -64,7 +64,7 @@ while True:
 
     resultsTracker = tracker.update(detections)
 
-    cv2.line(img, (limits[0], limits[1]), (limits[2], limits[3]), (0, 0, 255), 5)
+    cv2.line(img, (boundary[0], boundary[1]), (boundary[2], boundary[3]), (0, 0, 255), 5)
     for result in resultsTracker:
         x1, y1, x2, y2, id = result
         x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
@@ -77,10 +77,10 @@ while True:
         cx, cy = x1 + w // 2, y1 + h // 2
         cv2.circle(img, (cx, cy), 5, (255, 0, 255), cv2.FILLED)
 
-        if limits[0] < cx < limits[2] and limits[1] - 15 < cy < limits[1] + 15:
+        if boundary[0] < cx < boundary[2] and boundary[1] - 15 < cy < boundary[1] + 15:
             if totalCount.count(id) == 0:
                 totalCount.append(id)
-                cv2.line(img, (limits[0], limits[1]), (limits[2], limits[3]), (0, 255, 0), 5)
+                cv2.line(img, (boundary[0], boundary[1]), (boundary[2], boundary[3]), (0, 255, 0), 5)
 
     # cvzone.putTextRect(img, f' Count: {len(totalCount)}', (50, 50))
     cv2.putText(img,str(len(totalCount)),(255,100),cv2.FONT_HERSHEY_PLAIN,5,(50,50,255),8)
