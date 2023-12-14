@@ -1,4 +1,4 @@
-### Object Detection
+### Object Detection & Tracking
 
 #### YOLOv8
 
