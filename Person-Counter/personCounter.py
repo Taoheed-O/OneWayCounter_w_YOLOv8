@@ -43,6 +43,10 @@ while True:
     source, img = cap.read()
     results = model(img, stream=True)
 
+    imgGraphics = cv2.imread("C:\\Users\\BAB AL SAFA\\Desktop\\MINE\\Object-detection\\Person-Counter\\images/person-walking.png", cv2.IMREAD_UNCHANGED)
+    imgGraphics = cv2.resize(imgGraphics, (0,0), fx=0.45, fy=0.45)
+    img = cvzone.overlayPNG(img, imgGraphics, (650, 0))
+
     detections = np.empty((0, 5))
 
     for r in results:
@@ -84,6 +88,7 @@ while True:
                 totalCounts.append(id)
                 cv2.line(img, (limits[0], limits[1]),(limits[2], limits[3]), (0, 255, 0), 5)
 
-    cv2.putText(img, f"counts: {len(totalCounts)}", (255, 150), cv2.FONT_HERSHEY_DUPLEX, 3, (255, 0, 255), 3)
+    # cv2.putText(img, f"counts: {len(totalCounts)}", (255, 150), cv2.FONT_HERSHEY_DUPLEX, 3, (255, 0, 255), 3)
+    cv2.putText(img,str(len(totalCounts)),(625,100),cv2.FONT_HERSHEY_PLAIN,5,(0,0,0),8)
     cv2.imshow('Image', img)
     cv2.waitKey(1)
