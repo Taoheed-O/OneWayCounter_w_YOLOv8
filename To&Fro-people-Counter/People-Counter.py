@@ -5,9 +5,9 @@ import cvzone
 import math
 from sort import *
 
-cap = cv2.VideoCapture("videos/people.mp4")  # For Video
+cap = cv2.VideoCapture("C:\\Users\\BAB AL SAFA\\Desktop\\MINE\\Object-detection\\To&Fro-people-Counter\\videos/people.mp4")  # For Video
 
-model = YOLO("Yolo-Weights/yolov8n.pt")
+model = YOLO("C:\\Users\\BAB AL SAFA\\Desktop\\MINE\\Object-detection\\To&Fro-people-Counter\\Yolo-Weights/yolov8n.pt")
 
 classNames = ["person", "bicycle", "car", "motorbike", "aeroplane", "bus", "train", "truck", "boat",
               "traffic light", "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat",
@@ -21,7 +21,7 @@ classNames = ["person", "bicycle", "car", "motorbike", "aeroplane", "bus", "trai
               "teddy bear", "hair drier", "toothbrush"
               ]
 
-mask = cv2.imread("images/mask.png")
+mask = cv2.imread("C:\\Users\\BAB AL SAFA\\Desktop\\MINE\\Object-detection\\To&Fro-people-Counter\\images/mask.png")
 
 # Tracking
 tracker = Sort(max_age=20, min_hits=3, iou_threshold=0.3)
@@ -36,7 +36,7 @@ while True:
     success, img = cap.read()
     imgRegion = cv2.bitwise_and(img, mask)
 
-    imgGraphics = cv2.imread("images/graphics.png", cv2.IMREAD_UNCHANGED)
+    imgGraphics = cv2.imread("C:\\Users\\BAB AL SAFA\\Desktop\\MINE\\Object-detection\\To&Fro-people-Counter\\images/graphics.png", cv2.IMREAD_UNCHANGED)
     img = cvzone.overlayPNG(img, imgGraphics, (730, 260))
     results = model(imgRegion, stream=True)
 

@@ -15,9 +15,9 @@ frameWidth = 640
 frameHeight = 480
 
 
-cap = cv2.VideoCapture("videos/people_walking.mp4")
+cap = cv2.VideoCapture("C:\\Users\\BAB AL SAFA\\Desktop\\MINE\\Object-detection\\Person-Counter\\videos/people_walking.mp4")
 
-model = YOLO('Yolo-Weights/yolov8n.pt')
+model = YOLO('C:\\Users\\BAB AL SAFA\\Desktop\\MINE\\Object-detection\\Person-Counter\\Yolo-Weights/yolov8n.pt')
 
 
 classnames = ['person', 'bicycle', 'car', 'motorbike', 'aeroplane', 'bus', 'train', 'truck', 'boat',
@@ -85,9 +85,5 @@ while True:
                 cv2.line(img, (limits[0], limits[1]),(limits[2], limits[3]), (0, 255, 0), 5)
 
     cv2.putText(img, f"counts: {len(totalCounts)}", (255, 150), cv2.FONT_HERSHEY_DUPLEX, 3, (255, 0, 255), 3)
-
-    img = cv2.resize(img, (frameWidth, frameHeight))
-    cv2.imshow('image', img)
-
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+    cv2.imshow('Image', img)
+    cv2.waitKey(1)
