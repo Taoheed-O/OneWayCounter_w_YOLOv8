@@ -15,9 +15,9 @@ frameWidth = 640
 frameHeight = 480
 
 
-cap = cv2.VideoCapture("C:\\Users\\BAB AL SAFA\\Desktop\\MINE\\Object-detection\\Person-Counter\\videos/people_walking.mp4")
+cap = cv2.VideoCapture("C:\\Users\\BAB AL SAFA\\Desktop\\MINE\\OneWayCounter_w_YOLOv8\\videos/people_walking.mp4")
 
-model = YOLO('C:\\Users\\BAB AL SAFA\\Desktop\\MINE\\Object-detection\\Person-Counter\\Yolo-Weights/yolov8n.pt')
+model = YOLO('C:\\Users\\BAB AL SAFA\\Desktop\\MINE\\OneWayCounter_w_YOLOv8\\Yolo-Weights/yolov8n.pt')
 
 
 classnames = ['person', 'bicycle', 'car', 'motorbike', 'aeroplane', 'bus', 'train', 'truck', 'boat',
@@ -43,7 +43,7 @@ while True:
     source, img = cap.read()
     results = model(img, stream=True)
 
-    imgGraphics = cv2.imread("C:\\Users\\BAB AL SAFA\\Desktop\\MINE\\Object-detection\\Person-Counter\\images/person-walking.png", cv2.IMREAD_UNCHANGED)
+    imgGraphics = cv2.imread("C:\\Users\\BAB AL SAFA\\Desktop\\MINE\\OneWayCounter_w_YOLOv8\\images/person-walking.png", cv2.IMREAD_UNCHANGED)
     imgGraphics = cv2.resize(imgGraphics, (0,0), fx=0.45, fy=0.45)
     img = cvzone.overlayPNG(img, imgGraphics, (650, 0))
 
